@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_smoke"
+    tools:context=".menu.home.HomeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:background="@drawable/half_rounded" />
+
+        <TextView
+            android:id="@+id/your_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Hi Achmad!"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+        <View
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/your_name"
+            android:layout_marginStart="15dp"
+            android:layout_width="30dp"
+            android:layout_height="5dp"
+            android:background="@drawable/bg_search"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:elevation="3dp"
+            android:src="@drawable/ic_avatar"
+            app:civ_border_color="@android:color/white"
+            app:civ_border_width="3dp" />
+
+        <LinearLayout
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="125dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_search"
+            android:elevation="50dp"
+            android:gravity="center_vertical">
+
+            <SearchView
+                android:id="@+id/search_recipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="false"
+                android:queryBackground="@android:color/transparent"
+                android:queryHint="Search"
+                android:searchIcon="@drawable/ic_search"
+                android:theme="@style/SearchView"
+                app:queryBackground="@android:color/transparent" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_below="@id/search"
+            android:clipToPadding="false"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+</FrameLayout>

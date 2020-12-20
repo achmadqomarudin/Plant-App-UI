@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_ghost"
+    tools:context=".menu.home.HomeDetailActivity">
+
+    <ImageButton
+        android:id="@+id/button_back"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_back_arrow" />
+
+    <ImageView
+        android:id="@+id/icon_1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/button_back"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/bg_recommended"
+        android:elevation="20dp"
+        android:padding="12dp"
+        android:src="@drawable/ic_icon_1" />
+
+    <ImageView
+        android:id="@+id/icon_2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/icon_1"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_recommended"
+        android:elevation="20dp"
+        android:padding="12dp"
+        android:src="@drawable/ic_icon_2" />
+
+    <ImageView
+        android:id="@+id/icon_3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/icon_2"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_recommended"
+        android:elevation="20dp"
+        android:padding="14dp"
+        android:src="@drawable/ic_icon_3" />
+
+    <ImageView
+        android:id="@+id/icon_4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/icon_3"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_recommended"
+        android:elevation="20dp"
+        android:padding="12dp"
+        android:src="@drawable/ic_icon_4" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/detail_plant_title"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="-30dp"
+        android:layout_marginEnd="-50dp"
+        android:layout_marginBottom="10dp"
+        android:clipToPadding="false"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="0dp">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_home_detail_picture"
+            android:elevation="50dp" />
+    </androidx.cardview.widget.CardView>
+
+    <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+        android:id="@+id/layout_dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/detail_plant_title"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
+        app:dotsColor="@color/white"
+        app:dotsCornerRadius="8dp"
+        app:dotsSize="12dp"
+        app:dotsSpacing="4dp"
+        app:dotsStrokeColor="@color/light_gray2"
+        app:dotsStrokeWidth="2dp" />
+
+    <ImageButton
+        android:id="@+id/button_more"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_more" />
+
+    <TextView
+        android:id="@+id/detail_plant_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/text_country"
+        android:layout_marginStart="15dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Angelica"
+        android:layout_toStartOf="@+id/text_price"
+        android:textColor="@color/dark_late_gray"
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/text_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/text_country"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="$500"
+        android:textColor="@color/teal"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/text_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Russia"
+        android:textColor="@color/gray"
+        android:textSize="18sp" />
+
+    <RelativeLayout
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/button_buy_now"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@+id/center"
+            android:background="@drawable/bg_button_buy_now"
+            android:text="Buy Now"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/center"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/button_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@+id/center"
+            android:background="@android:color/transparent"
+            android:text="Description"
+            android:textAllCaps="false"
+            android:textColor="@color/dark_late_gray"
+            android:textSize="16sp" />
+    </RelativeLayout>
+</RelativeLayout>

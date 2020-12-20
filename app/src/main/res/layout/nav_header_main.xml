@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="220dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:gravity="bottom|center_horizontal"
+        android:background="@color/teal"
+        android:paddingStart="16dp"
+        android:orientation="vertical"
+        tools:ignore="RtlSymmetry">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:civ_border_color="@android:color/white"
+            app:civ_border_width="3dp"
+            android:src="@drawable/ic_plant" />
+
+        <TextView
+            android:id="@+id/atv_name_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Plant App UI"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_email_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:paddingBottom="15dp"
+            android:textSize="12sp"
+            android:text="plantappui@gmail.com" />
+
+    </LinearLayout>
+</RelativeLayout>

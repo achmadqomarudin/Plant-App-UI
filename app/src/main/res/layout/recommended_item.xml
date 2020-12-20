@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_recommended_parent"
+    android:layout_width="130dp"
+    android:layout_height="200dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="40dp"
+    android:background="@drawable/bg_recommended"
+    android:clickable="true"
+    android:elevation="20dp"
+    android:focusable="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/item_recommended_picture"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+
+        <TextView
+            android:id="@+id/item_recommended_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_recommended_picture"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toStartOf="@+id/item_recommended_price"
+            android:fontFamily="@font/nunito_bold"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Title"
+            android:textColor="@color/dark_late_gray" />
+
+        <TextView
+            android:id="@+id/item_recommended_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_recommended_picture"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="$0"
+            android:textColor="@color/cadet_blue" />
+
+        <TextView
+            android:id="@+id/item_recommended_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_recommended_title"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/nunito_semi_bold"
+            android:text="Country"
+            android:textColor="@color/gray"
+            android:textSize="11sp"
+            tools:ignore="SmallSp" />
+
+    </RelativeLayout>
+</RelativeLayout>
