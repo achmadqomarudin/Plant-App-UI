@@ -1,15 +1,18 @@
 package com.project.plantappui;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -19,10 +22,17 @@ import com.project.plantappui.menu.favorite.FavoriteFragment;
 import com.project.plantappui.menu.home.HomeFragment;
 import com.project.plantappui.menu.profile.ProfileFragment;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+import nl.joery.animatedbottombar.AnimatedBottomBar;
+
+public class MainActivity extends AppCompatActivity {
+    private static final String TAG = MainActivity.class.getSimpleName();
     private Toolbar toolbar;
+    AnimatedBottomBar animatedBottomBar;
+    FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +40,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_main);
 
         setToolbar();
-        initViews();
+        initViews(savedInstanceState);
         initComponentsNavHeader();
-        loadFragment(new HomeFragment());
+//        loadFragment(new HomeFragment());
 
     }
 
@@ -42,9 +52,49 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         Objects.requireNonNull(getSupportActionBar()).setTitle(0);
     }
 
-    private void initViews() {
-        BottomNavigationView navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(this);
+    private void initViews(Bundle savedInstanceState) {
+        /**
+         * Menu Bottom Navigation Drawer
+         * */
+        animatedBottomBar = findViewById(R.id.navigation);
+
+        if (savedInstanceState == null) {
+            animatedBottomBar.selectTabById(R.id.nav_menu_home, true);
+            fragmentManager = getSupportFragmentManager();
+            HomeFragment homeFragment = new HomeFragment();
+            fragmentManager.beginTransaction().replace(R.id.fragment_container, homeFragment)
+                    .commit();
+        }
+
+        animatedBottomBar.setOnTabSelectListener(new AnimatedBottomBar.OnTabSelectListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public void onTabSelected(int lastIndex, @Nullable AnimatedBottomBar.Tab lastTab, int newIndex, @NotNull AnimatedBottomBar.Tab newTab) {
+                Fragment fragment = null;
+                switch (newTab.getId()) {
+                    case R.id.nav_menu_home:
+                        fragment = new HomeFragment();
+                        break;
+                    case R.id.nav_menu_wishlist:
+                        fragment = new FavoriteFragment();
+                        break;
+                    case R.id.nav_menu_signin:
+                        fragment = new ProfileFragment();
+                        break;
+                }
+
+                if (fragment != null) {
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
+                            .commit();
+                } else {
+                    Log.e(TAG, "Error in creating Fragment");
+                }
+            }
+        });
+
+//        BottomNavigationView navigation = findViewById(R.id.navigation);
+//        navigation.setOnNavigationItemSelectedListener(this);
 
         /**
          * Menu Navigation Drawer
@@ -59,43 +109,43 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         toggle.syncState();
     }
 
-    /**
-     * Fragment
-     **/
-    private boolean loadFragment(Fragment fragment) {
-        //switching fragment
-        if (fragment != null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, fragment)
-                    .commit();
-            return true;
-        }
-        return false;
-    }
+//    /**
+//     * Fragment
+//     **/
+//    private boolean loadFragment(Fragment fragment) {
+//        //switching fragment
+//        if (fragment != null) {
+//            getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragment_container, fragment)
+//                    .commit();
+//            return true;
+//        }
+//        return false;
+//    }
 
-    /**
-     * Menu Bottom Navigation Drawer
-     * */
-    @SuppressLint("NonConstantResourceId")
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        Fragment fragment = null;
-
-        switch (item.getItemId()) {
-            case R.id.nav_menu_home:
-                fragment = new HomeFragment();
-                break;
-            case R.id.nav_menu_wishlist:
-                fragment = new FavoriteFragment();
-                break;
-            case R.id.nav_menu_signin:
-                fragment = new ProfileFragment();
-                break;
-        }
-        return loadFragment(fragment);
-    }
+//    /**
+//     * Menu Bottom Navigation Drawer
+//     * */
+//    @SuppressLint("NonConstantResourceId")
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//
+//        Fragment fragment = null;
+//
+//        switch (item.getItemId()) {
+//            case R.id.nav_menu_home:
+//                fragment = new HomeFragment();
+//                break;
+//            case R.id.nav_menu_wishlist:
+//                fragment = new FavoriteFragment();
+//                break;
+//            case R.id.nav_menu_signin:
+//                fragment = new ProfileFragment();
+//                break;
+//        }
+//        return loadFragment(fragment);
+//    }
 
     private void initComponentsNavHeader(){
         NavigationView navigationView = findViewById(R.id.nav_view);

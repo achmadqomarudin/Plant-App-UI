@@ -4,16 +4,16 @@
     <item
         android:id="@+id/nav_menu_home"
         android:icon="@drawable/ic_flower"
-        android:title="" />
+        android:title="Home" />
 
     <item
         android:id="@+id/nav_menu_wishlist"
         android:icon="@drawable/ic_favorite"
-        android:title=""/>
+        android:title="Favorite"/>
 
     <item
         android:id="@+id/nav_menu_signin"
         android:icon="@drawable/ic_profile"
-        android:title="" />
+        android:title="Profile" />
 
 </menu>
