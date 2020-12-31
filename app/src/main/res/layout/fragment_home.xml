@@ -75,9 +75,6 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_below="@id/search"
-            android:clipToPadding="false"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </RelativeLayout>

@@ -1,7 +1,12 @@
 package com.project.plantappui;
 
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,19 +15,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.widget.Toast;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.project.plantappui.menu.favorite.FavoriteFragment;
 import com.project.plantappui.menu.home.HomeFragment;
 import com.project.plantappui.menu.profile.ProfileFragment;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -42,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
         setToolbar();
         initViews(savedInstanceState);
         initComponentsNavHeader();
-//        loadFragment(new HomeFragment());
-
     }
 
     private void setToolbar() {
@@ -52,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle(0);
     }
 
+    @SuppressLint("NonConstantResourceId")
     private void initViews(Bundle savedInstanceState) {
         /**
          * Menu Bottom Navigation Drawer
@@ -66,35 +61,28 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         }
 
-        animatedBottomBar.setOnTabSelectListener(new AnimatedBottomBar.OnTabSelectListener() {
-            @SuppressLint("NonConstantResourceId")
-            @Override
-            public void onTabSelected(int lastIndex, @Nullable AnimatedBottomBar.Tab lastTab, int newIndex, @NotNull AnimatedBottomBar.Tab newTab) {
-                Fragment fragment = null;
-                switch (newTab.getId()) {
-                    case R.id.nav_menu_home:
-                        fragment = new HomeFragment();
-                        break;
-                    case R.id.nav_menu_wishlist:
-                        fragment = new FavoriteFragment();
-                        break;
-                    case R.id.nav_menu_signin:
-                        fragment = new ProfileFragment();
-                        break;
-                }
+        animatedBottomBar.setOnTabSelectListener((lastIndex, lastTab, newIndex, newTab) -> {
+            Fragment fragment = null;
+            switch (newTab.getId()) {
+                case R.id.nav_menu_home:
+                    fragment = new HomeFragment();
+                    break;
+                case R.id.nav_menu_wishlist:
+                    fragment = new FavoriteFragment();
+                    break;
+                case R.id.nav_menu_signin:
+                    fragment = new ProfileFragment();
+                    break;
+            }
 
-                if (fragment != null) {
-                    fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
-                            .commit();
-                } else {
-                    Log.e(TAG, "Error in creating Fragment");
-                }
+            if (fragment != null) {
+                fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
+                        .commit();
+            } else {
+                Log.e(TAG, "Error in creating Fragment");
             }
         });
-
-//        BottomNavigationView navigation = findViewById(R.id.navigation);
-//        navigation.setOnNavigationItemSelectedListener(this);
 
         /**
          * Menu Navigation Drawer
@@ -109,47 +97,9 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
     }
 
-//    /**
-//     * Fragment
-//     **/
-//    private boolean loadFragment(Fragment fragment) {
-//        //switching fragment
-//        if (fragment != null) {
-//            getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .replace(R.id.fragment_container, fragment)
-//                    .commit();
-//            return true;
-//        }
-//        return false;
-//    }
-
-//    /**
-//     * Menu Bottom Navigation Drawer
-//     * */
-//    @SuppressLint("NonConstantResourceId")
-//    @Override
-//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//
-//        Fragment fragment = null;
-//
-//        switch (item.getItemId()) {
-//            case R.id.nav_menu_home:
-//                fragment = new HomeFragment();
-//                break;
-//            case R.id.nav_menu_wishlist:
-//                fragment = new FavoriteFragment();
-//                break;
-//            case R.id.nav_menu_signin:
-//                fragment = new ProfileFragment();
-//                break;
-//        }
-//        return loadFragment(fragment);
-//    }
-
     private void initComponentsNavHeader(){
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setItemIconTintList(null); //disable tint on each icon to use color icon svg
+//        navigationView.setItemIconTintList(null); //disable tint on each icon to use color icon svg
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
             @Override
